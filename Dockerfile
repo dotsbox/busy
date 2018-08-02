@@ -17,7 +17,7 @@ WORKDIR /app
 COPY package.json /app/package.json
 
 # Install app dependencies
-RUN yarn --production
+RUN yarn
 
 COPY . /app/
 
@@ -27,6 +27,6 @@ RUN yarn build
 EXPOSE 8082 3000 43554
 
 # Show current folder structure in logs
-#CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]
-CMD [ "yarn", "start"]
+CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]
+#CMD [ "yarn", "start"]
 #CMD ["pm2-runtime", "start", "pm2.json"]
