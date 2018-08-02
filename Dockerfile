@@ -1,4 +1,4 @@
-FROM keymetrics/pm2:8-alpine
+FROM keymetrics/pm2:alpine
 
 ENV NPM_CONFIG_LOGLEVEL warn
 ENV STEEMCONNECT_CLIENT_ID=casteem
@@ -15,20 +15,15 @@ WORKDIR /app
 COPY package.json /app/package.json
 
 # Install app dependencies
-RUN npm install --production
+RUN yarn --production
 
 COPY . /app/
 
-RUN npm run heroku-prebuild
-RUN npm run heroku-postbuild
- 
- 
-ENV PORT 3000
+RUN yarn build
 
 # Expose the listening port of your app
 EXPOSE 3000
 
 # Show current folder structure in logs
-RUN ls -al -R
-
-CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]
+#CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]
+CMD [ "yarn", "start"]
