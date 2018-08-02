@@ -1,4 +1,4 @@
-FROM keymetrics/pm2:8-jessie
+FROM keymetrics/pm2:6-alpine
 
 ENV NPM_CONFIG_LOGLEVEL warn
 ENV STEEMCONNECT_CLIENT_ID=casteem
