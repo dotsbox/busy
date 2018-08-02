@@ -1,4 +1,4 @@
-FROM keymetrics/pm2:6-alpine
+FROM alpine:9-alpine
 
 ENV NPM_CONFIG_LOGLEVEL warn
 ENV STEEMCONNECT_CLIENT_ID=casteem
@@ -8,6 +8,8 @@ ENV SIGNUP_URL=https://signup.steemit.com/?ref=casteem
 
 RUN npm config set unsafe-perm true
 RUN npm i npm@latest -g
+# Install pm2
+RUN npm install pm2 -g
 
 WORKDIR /app
 
@@ -22,8 +24,9 @@ COPY . /app/
 RUN yarn build
 
 # Expose the listening port of your app
-EXPOSE 3000
+EXPOSE 8082 3000 43554
 
 # Show current folder structure in logs
 #CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]
 CMD [ "yarn", "start"]
+#CMD ["pm2-runtime", "start", "pm2.json"]
