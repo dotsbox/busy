@@ -1,4 +1,4 @@
-FROM alpine:9-alpine
+FROM node:9-alpine
 
 ENV NPM_CONFIG_LOGLEVEL warn
 ENV STEEMCONNECT_CLIENT_ID=casteem
