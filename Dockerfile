@@ -9,7 +9,8 @@ ENV SIGNUP_URL=https://signup.steemit.com/?ref=casteem
 RUN npm config set unsafe-perm true
 RUN npm i npm@latest -g
 # Install pm2
-RUN npm install pm2 -g
+RUN npm install --global yarn
+RUN npm install --global pm2
 
 WORKDIR /app
 
@@ -24,7 +25,7 @@ COPY . /app/
 RUN yarn build
 
 # Expose the listening port of your app
-EXPOSE 8082 3000 43554
+EXPOSE 80 443 8082 3000 43554
 
 # Show current folder structure in logs
 CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]
